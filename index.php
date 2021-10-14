@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Basic</title>
+    <title>PHP Basic: </title>
 </head>
 <body>
     <?php
@@ -44,6 +44,16 @@
         echo PI . "<br>";
         echo NUMBER_OF_LEG . "<br>";
         echo TITLE . "<br>";
+
+        /* Math */
+        echo "<h2>Math</h2><br>";
+        echo "Absolute: " . abs(-999) . "<br>";
+        echo "Hypotenuse: " . hypot(3, 2) . "<br>";
+        echo "Pi Value: " . pi() . "<br>";
+        echo "Power " . pow(2, 6) . "<br>";
+        echo "Random Value: " . rand(1, 6) . "<br>";
+        echo "Round a Number: " . round(0.5) . "<br>";
+        echo "Square Root: " . sqrt(16) . "<br>";
     ?>
 </body>
 </html>
