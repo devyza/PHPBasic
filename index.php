@@ -25,6 +25,15 @@
         echo $stringVar . "<br>";
         echo $boolVar . "<br>";
         echo $arrVar[1] . "<br>";
+
+        /* String, Numbers */
+        echo "<h2>String, Numbers</h2><br>";
+        echo $stringVar[7] . $stringVar[9] . "<br>";
+
+        echo $intVar + $doubleVar . "<br>";
+        echo $intVar - $doubleVar . "<br>";
+        echo $intVar * $doubleVar . "<br>";
+        echo $intVar / $doubleVar . "<br>";
     ?>
 </body>
 </html>
