@@ -25,6 +25,26 @@
             echo "The Same";
         }
         echo "<br>";
+
+        /* Switch Statement */
+        echo "<h2>Switch Statement</h2><br>";
+        $num = rand(64, 66);
+
+        echo "Decimal " . $num . "<br>";
+        switch($num) {
+            case 64:
+                echo "Your ASCII value is a";
+                break;
+            case 65:
+                echo "Your ASCII value is b";
+                break;
+            case 66:
+                echo "Your ASCII value is c";
+                break;
+            default:
+                echo "Nothing";
+        }
+        echo "<br>";
     ?>
 </body>
 </html>
