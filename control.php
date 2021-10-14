@@ -66,6 +66,51 @@
         $name = null;
         echo $user = (($name == null)? "Anomyous" : $name) . "<br>";   // Ternary
         echo $user = ($name ?? "John Doe") . "<br>";                   // Null coalescing
+
+        /* Loops */
+        echo "<h2>Loops</h2><br>";
+
+        /* While Loop */
+        $i = 0;
+        while ($i < 3) {
+            printf("Statement in While Loop: %d<br>", ++$i);
+        }
+        echo "<br>";
+
+        /* Do While Loop */
+        $i = 0;
+        do {
+            printf("Statemnt in Do While Loop: %d<br>", ++$i);
+        } while ($i < 3);
+        echo "<br>";
+
+        /* For Loop Statement */
+        for ($i = 0; $i < 3; $i++) {
+            printf("For Loop Statement: %d<br>", $i + 1);
+        }
+        echo "<br>";
+
+        /* Foreach Loop */
+        $arr = ["Apple", "Banana", "Orange"];
+        foreach ($arr as $i) {
+            printf("$i<br>");
+        }
+        echo "<br>";
+
+        /* Break and Continue */
+        $i = 0;
+        while (true) {
+            if ($i == 5) {
+                break;
+            }
+            if ($i == 3) {
+                $i++;
+                continue;
+            } 
+            printf("While Loop %d<br>", $i);     
+            $i++;
+        }
+        echo "<br>";
     ?>
 </body>
 </html>
