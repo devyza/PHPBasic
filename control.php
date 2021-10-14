@@ -45,6 +45,27 @@
                 echo "Nothing";
         }
         echo "<br>";
+
+        /* Operators */
+        echo "<h2>Operators</h2><br>";
+        echo (100 == "100") . "<br>";   // Equal
+        echo (100 <> "10") . "<br>";    // Not Equal
+        echo (100 === "100") . "<br>";  // Identical
+        echo (2 <=> 2) . "<br>";        // Spaceship
+
+        /* String Operator */
+        echo "<h3>String Operator</h3><br>";
+        echo "Hello " . "World<br>";    // Concatenatioin
+        
+        $text1 = "AAA";
+        $text2 = "BBB";
+        echo $text1 .= $text2;          // Concatenation Assignment
+
+        /* Conditional Assignment Operator */
+        echo "<h3>Conditional Assignment Operator</h3><br>";
+        $name = null;
+        echo $user = (($name == null)? "Anomyous" : $name) . "<br>";   // Ternary
+        echo $user = ($name ?? "John Doe") . "<br>";                   // Null coalescing
     ?>
 </body>
 </html>
