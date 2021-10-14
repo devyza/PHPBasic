@@ -54,6 +54,33 @@
         echo "Random Value: " . rand(1, 6) . "<br>";
         echo "Round a Number: " . round(0.5) . "<br>";
         echo "Square Root: " . sqrt(16) . "<br>";
+
+        /* Arrays */
+        echo "<h2>Array</h2><br>";
+        $idxArr = [5, true, 1, 2, "A", 67]; //Indexed Array
+        echo $idxArr[3] . "<br>";
+        echo min($idxArr) . "<br>";
+        echo max($idxArr) . "<br>";
+
+        $assArr = [
+            "Apple" => "3",
+            "Banana" => "2",
+            "Orange" => "5"
+        ];  // Associated Array     
+        echo $assArr['Orange'] . "<br><br>";
+        
+        $mulArr = [
+            ["Mg Mg", 20, "IT"],
+            ["Ma Ma", 21, "HR"],
+            ["Aye Aye", 22, "Admin"]
+        ]; // Multidimensional Array
+
+        foreach ($mulArr as $person) {
+            foreach($person as $i) {
+                echo $i . "<br>";
+            }
+            echo "<br>";
+        }
     ?>
 </body>
 </html>
