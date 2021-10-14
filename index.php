@@ -6,6 +6,11 @@
    <title>PHP Basic</title>
 </head>
 <body>
-   <?php echo "<h2>Hello, World!</h2>";?>
+   <?php
+      /* Variable */
+      echo "<h2>Variable</h2><br>";
+      $name = "John Doe";
+      echo "Hello, $name<br>";
+   ?>
 </body>
 </html>
