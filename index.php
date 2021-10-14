@@ -81,6 +81,48 @@
             }
             echo "<br>";
         }
+
+        /* Sorting Array */
+        echo "<h2>Sorting Array</h2><br>";
+
+        /* Sorting Indexed Array */
+        function printArr($arr) {
+            foreach ($arr as $i) {
+                echo $i . " ";
+            }
+            echo "<br>";
+        }
+
+        sort($idxArr);      // Sort in Acending Order
+        printArr($idxArr);
+
+        rsort($idxArr);     // Sort in Decending Order
+        printArr($idxArr);  // ???
+
+        $arr = [1, 6, 3, 4, 5];
+        rsort($arr);
+        printArr($arr);
+
+        
+        /* Sorting Accociated Array */
+        function printAssArr($arr) {
+            foreach($arr as $i => $i_value) {
+                echo "Key=" . $i . " Value=" . $i_value . "<br>";
+            }
+            echo "<br>";
+        }
+
+        ksort($assArr);     // Sort in Acending Order by Key
+        printAssArr($assArr);
+
+        krsort($assArr);     // Sort in Decending Order by Key
+        printAssArr($assArr);
+
+        asort($assArr);    // Sort in Acending Order by Value
+        printAssArr($assArr);
+
+        arsort($assArr);    // Sort in Decending Order by Value
+        printAssArr($assArr);
     ?>
 </body>
 </html>
