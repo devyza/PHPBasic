@@ -34,6 +34,16 @@
         echo $intVar - $doubleVar . "<br>";
         echo $intVar * $doubleVar . "<br>";
         echo $intVar / $doubleVar . "<br>";
+
+        /* Constants */
+        echo "<h2>Constants</h2><br>";
+        define("PI", 3.14);
+        define("NUMBER_OF_LEG", 4);
+        define("TITLE", "Git Basic");
+
+        echo PI . "<br>";
+        echo NUMBER_OF_LEG . "<br>";
+        echo TITLE . "<br>";
     ?>
 </body>
 </html>
