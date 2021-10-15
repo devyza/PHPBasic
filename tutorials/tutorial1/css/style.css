@@ -1,1 +1,24 @@
 @charset "utf-8";
+
+body {
+  margin: 0;
+}
+
+.tbl-chess {
+  border: 1px solid #000000;
+  border-spacing: 0;
+  margin: 0 auto;
+}
+
+.tbl-chess tr td {
+  width:  50px;
+  height: 50px;
+}
+
+.tbl-chess tr td.black {
+  background: #000000;
+}
+
+.tbl-chess tr td.white {
+  background: #FFFFFF;
+}
