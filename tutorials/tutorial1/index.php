@@ -9,16 +9,24 @@
 <body>
     <table class="tbl-chess">
         <?php
-            for ($row = 0; $row < 8; $row++) {
+
+            $ROW_MAX = 8;
+            $COLUMN_MAX = 8;
+
+            for ($row = 0; $row < $ROW_MAX; $row++) {
                 echo "<tr>";
-                    for($col=0; $col < 8; $col++) {
+                    for ($col=0; $col < $COLUMN_MAX; $col++) {
                         /* 
                             $row must also be calculate to prevent 
                             from color reset.
                             Example:    ($row=1 + $col=2) % 2 = 1
                                         ($row=0 + $col=8) % 2 = 0
                         */
-                        $class = ($col+$row) % 2 ? "white" : "black";
+                        if (($col + $row) % 2) {
+                            $class = "white";
+                        } else {
+                            $class = "black";
+                        }
 
                         // Assign class name into table column.
                         echo "<td class=$class></td>";
