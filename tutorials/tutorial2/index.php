@@ -9,42 +9,40 @@
 <body>
   <?php
   
-    // Assign Input
-    $input = 5;
+    $input = 5;         // Assign Input value
+    $spltr = "&nbsp;";  // Assign splitter value
+    $symbl = "*";       // Assign symbol character
 
     // Draw Upper Triangle
-    for ($row=0; $row < $input; $row++) { 
+    for ($row = 0; $row < $input+1; $row++) {
       
       // Ouput Space
-      for ($col = $input; $col-$row-1 > 0; $col--) {
-        echo "<span>&nbsp;</span>";
+      for ($col = $input; $col-$row > 0; $col--) {
+        echo "<span>$spltr</span>";
       }
 
-      // Ouput *
+      // Ouput Star using (2n + 1) formula
       for ($col = 0; $col < (2 * $row + 1); $col++) {
-        echo  "<span>*</span>";
+        echo  "<span>$symbl</span>";
       }
 
       echo "<br>";
     }
 
     // Draw Lower Triangle
-    for ($row = 0; $row < $input-1; $row++) {
+    for ($row = 0; $row <  $input; $row++) {
 
-      // Output Sapce
-      for ($col = 0; $col < $row+1; $col++) {
-        echo "<span>&nbsp;<span>";
+      // Output Space
+      for ($col = $row + 1; $col > 0; $col--) {
+        echo "<span>$spltr<span>";
       }
-
-      // Output *
-      for ($col = $input; $col - (2* $row - 1) >= 0; $col--) {
-        echo  "<span>*</span>";
+      // Output Star using (2n - 1) formula
+      for ($col = 2 * ($input - $row) - 1; $col > 0; $col-- ) {
+          echo "<span>$symbl<span>";
       }
 
       echo "<br>";
     }
-
   ?>
-
 </body>
 </html>
