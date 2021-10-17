@@ -8,17 +8,19 @@
 </head>
 <body>
     <?php
-        // Get Current's Date
-        $currentDate = new DateTime();
+        /**
+         * Calculate the user's age
+         * 
+         * @param $dateOfBirth
+         * @return integer
+         */
+        function calculateAge($dateOfBirth){
+            return (new DateTime())->diff($dateOfBirth)->y;
+        }
 
-        /* 
-            Get DOB from POST Request and convert it into DateTime object
-            Then get differences between current date and DOB
-        */
-        $diffDate = $currentDate->diff(new DateTime( $_POST['dob']));
-
-        // Get number of year from two different dates
-        echo "Your Age is: " . $diffDate->y;
+        // Calculate user's DOB from post request
+        $dateOfBirth = new DateTime($_POST['dob']);
+        echo "Year Age is: " . calculateAge($dateOfBirth);
     ?>
 </body>
 </html>
