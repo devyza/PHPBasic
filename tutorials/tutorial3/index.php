@@ -7,8 +7,9 @@
 </head>
 <body>
     <form action="age.php" method="post">
-        Date of Birth: <input type="date" id="dob" name="dob" max>
+        Date of Birth: <input type="date" id="txtDOB" name="dob">
         <input type="submit">
     </form>
+    <script src="js/common.js"></script>
 </body>
 </html>
