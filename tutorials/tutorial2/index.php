@@ -14,10 +14,10 @@
     $symbl = "*";       // Assign symbol character
 
     // Draw Upper Triangle
-    for ($row = 0; $row < $input+1; $row++) {
+    for ($row = 0; $row < ($input + 1); $row++) {
       
       // Ouput Space
-      for ($col = $input; $col-$row > 0; $col--) {
+      for ($col = $input; ($col - $row) > 0; $col--) {
         echo "<span>$spltr</span>";
       }
 
