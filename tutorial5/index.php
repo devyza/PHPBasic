@@ -19,6 +19,7 @@
                 echo $text . "<br>";
             }
 
+            // Assign absolute file path
             $ABSOLUTE_PATH = "res/";
 
             // Check there's POST request
@@ -27,17 +28,15 @@
             }
             // Get file name from POST request
             $file = $_POST['file'];
-            
-            // Check the file is empty
             if ($file == null) {
                 return;
             }
 
             $filePath = realpath($ABSOLUTE_PATH . $file);
             $filePtr = fopen($filePath, "r") or die("Unable to open file!");
-            $fileType = pathinfo($filePath)['extension'];
-
+            
             $reader = new FileParser();
+            $fileType = pathinfo($filePath)['extension'];
 
             switch ($fileType) {
                 case "txt":

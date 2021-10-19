@@ -3,17 +3,32 @@
 
     class FileParser {
 
+        /**
+         * Parse TXT file into HTML format.
+         * 
+         * @param $filePtr
+         * @return null
+         */
         public static function parseTxt($filePtr) {
             while(!feof($filePtr)) {
                 echo fgets($filePtr) . "<br>";
             }
         }
 
+         /**
+         * Parse CSV file into HTML format.
+         * 
+         * @param $filePtr
+         * @return null
+         */
         public static function parseCsv($filePtr) {
+
+            // Set header for first row
             $isHeader = true;
 
             echo "<table>";
             while (!feof($filePtr)) {
+
                 echo "<tr>";
                 $dataColumn = explode(',', fgets($filePtr));
 
@@ -33,6 +48,12 @@
             echo "</table>";
         }
 
+         /**
+         * Parse TXT file into HTML format.
+         * 
+         * @param $file
+         * @return null
+         */
         public static function parseXlxs($file) {
             echo SimpleXLSX::parse($file)->toHTML();
         }
