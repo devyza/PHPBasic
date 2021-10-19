@@ -1,4 +1,6 @@
 <?php
+    require_once("vendor/autoload.php");
+
     class FileParser {
 
         public static function parseTxt($filePtr) {
@@ -29,6 +31,10 @@
                 echo "</tr>";
             }
             echo "</table>";
+        }
+
+        public static function parseXlxs($file) {
+            echo SimpleXLSX::parse($file)->toHTML();
         }
     }
 ?>

@@ -46,6 +46,9 @@
                 case "csv":
                     $reader::parseCsv($filePtr);
                     break;
+                case "xlsx":
+                    $reader::parseXlxs($filePath);
+                    break;
                 default:
                     println("File Does Support");
                     echo $fileType;
