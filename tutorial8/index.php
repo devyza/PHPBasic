@@ -9,14 +9,14 @@
 <body>
    <?php
 
-      $DB_HOST = 'localhost';
-      $DB_USER = 'root';
-      $DB_PASS = '123456@mysql';
-      $DB_NAME = 'php-training';
-      $RESULT_PER_PAGE = 10;
+      define('DB_HOST', 'localhost');
+      define('DB_USER', 'root');
+      define('DB_PASS', '123456@mysql');
+      define('DB_NAME', 'php-training');
+      define('RESULT_PER_PAGE', 10);
       
       // Connect to Database
-      $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+      $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
       if ($conn->connect_error) {
          die("Connection failed" . $conn->connect_error);
       }
@@ -31,7 +31,7 @@
 
       // Get result count and calcuate for pagination
       $rowCount = mysqli_num_rows($result);
-      $numOfPage = $rowCount / $RESULT_PER_PAGE;
+      $numOfPage = $rowCount / RESULT_PER_PAGE;
       
       // Set Page Number for Pagination
       if (!isset($_GET['page'])) {
@@ -41,8 +41,8 @@
       }
 
       // Set data range and get query results
-      $offset = ($pageNo - 1) * $RESULT_PER_PAGE;
-      $query .= " LIMIT " . $offset . ', ' . $RESULT_PER_PAGE;
+      $offset = ($pageNo - 1) * RESULT_PER_PAGE;
+      $query .= " LIMIT " . $offset . ', ' . RESULT_PER_PAGE;
       $result = mysqli_query($conn, $query);
 
       // Show query results with table
