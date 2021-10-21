@@ -34,11 +34,13 @@
 </head>
 <body>
     <div id="chrtPie"></div>
+    <div id="chrtLine"></div>
     <script src="js/loader.js"></script>
     <script>
         // Load the current library release
         google.charts.load("current", {packages:["corechart"]});
         google.charts.setOnLoadCallback(drawPieChart);
+        google.charts.setOnLoadCallback(drawLineChart);
 
         function drawPieChart() {
 
@@ -65,6 +67,31 @@
 
             // Draw Pie chart
             var chart = new google.visualization.PieChart(document.getElementById('chrtPie'));
+            chart.draw(data, options);
+        }
+
+        function drawLineChart() {
+
+            // Convert Array to DataTable to dispaly
+            var data = google.visualization.arrayToDataTable([
+                ['House', 'Number of Character'],
+                // Load query from MySQL Database
+                <?php
+                    $query = "SELECT birth, COUNT(id) FROM characters
+                    GROUP BY birth ORDER BY birth;";
+                    convertToArray(mysqli_query($conn, $query));
+                ?>
+            ]);
+
+            // Set options for Line Chart
+            var options = {
+                title: 'Total Number of Character by Birth Year',
+                width: 1000,
+                height: 600
+            };
+
+            // Draw Line chart
+            var chart = new google.visualization.LineChart(document.getElementById('chrtLine'));
             chart.draw(data, options);
         }
     </script>
