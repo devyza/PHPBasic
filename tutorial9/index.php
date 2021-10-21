@@ -49,9 +49,8 @@
                 ['House', 'Number of Character'],
                 // Load query from MySQL Database
                 <?php
-                    $query = "SELECT house, COUNT(id) as total FROM characters
-                        GROUP BY house
-                        ORDER BY house;";
+                    $query = "SELECT house, COUNT(id) AS total FROM characters
+                        GROUP BY house ORDER BY house;";
                     convertToArray(mysqli_query($conn, $query));
                 ?>
             ]);
