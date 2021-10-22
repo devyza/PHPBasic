@@ -7,19 +7,31 @@
    <title>Tutorial 8</title>
 </head>
 <body>
-   <?php
+   <form action="crud.php" method="post">
+      <label for="id">ID:</label>
+      <input type="text" name="id"> <br><br>
+      <label for="name">Name:</label>
+      <input type="text" name="name"> <br><br>
+      <label for="cmbHouse">House:</label>
+      <select name="cmbHouse" required>
+         <option value="Gryffindor">Gryffindor</option>
+         <option value="Hufflepuff">Hufflepuff</option>
+         <option value="Ravenclaw">Ravenclaw</option>
+         <option value="Slytherin">Slytherin</option>
+      </select> <br><br>
+      <label for="birth">Birth:</label>
+      <input type="text" name="birth"> <br><br>
+      <input type="submit" value="Register" name="btnRegister">
+      <input type="submit" value="Update" name="btnUpdate">
+      <input type="submit" value="Delete" name="btnDelete">
+   </form>
+   <br>
 
-      define('DB_HOST', 'localhost');
-      define('DB_USER', 'root');
-      define('DB_PASS', '123456@mysql');
-      define('DB_NAME', 'php-training');
-      define('RESULT_PER_PAGE', 10);
+   <?php
+      require 'database.php'; 
       
-      // Connect to Database
-      $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-      if ($conn->connect_error) {
-         die("Connection failed" . $conn->connect_error);
-      }
+      // Get connection
+      $conn = getConnection();
 
       // Check if the query result is empty or not
       $query = "SELECT * FROM characters";
@@ -32,6 +44,11 @@
       // Get result count and calcuate for pagination
       $rowCount = mysqli_num_rows($result);
       $numOfPage = $rowCount / RESULT_PER_PAGE;
+
+      // Add one page for remainder
+      if ($rowCount % RESULT_PER_PAGE > 0) {
+         $numOfPage += 1;
+      }
       
       // Set Page Number for Pagination
       if (!isset($_GET['page'])) {
