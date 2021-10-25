@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.container-fluid {
+  margin-bottom: 20px;
+  padding-inline: 10px;
+}
