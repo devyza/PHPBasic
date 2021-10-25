@@ -1,10 +1,29 @@
 @charset "UTF-8";
 
+td, th {
+  border: 1px solid black;
+  padding-inline: 10px;
+}
+
+.pgn-box {
+  text-align: center;
+}
+
 a.pgn {
   text-decoration: none;
   font-size: 20px;
 }
 
-a.pgn:not(:first-child) {
+a.pgn:not(:last-child) {
   margin-right: 10px;
+}
+
+form {
+  margin: 10px 50px;
+  padding: 30px 50px;
+  border: 1px solid black;
+}
+
+.container-fluid {
+  padding: 20px 50px;
 }
