@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Task;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Rules\FirstCapitalLetter;
 
 class TaskController extends Controller
 {
@@ -16,15 +16,9 @@ class TaskController extends Controller
 
     public function addTask(Request $request) {
         
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+        $request->validate([
+            'name' => ['required', 'max:255', new FirstCapitalLetter],
         ]);
-    
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
     
         $task = new Task;
         $task->name = $request->name;
