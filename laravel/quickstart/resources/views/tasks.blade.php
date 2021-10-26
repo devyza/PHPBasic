@@ -44,7 +44,8 @@
                     <!-- Table Headings -->
                     <thead>
                         <th>Task</th>
-                        <th>&nbsp;</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
                     </thead>
 
                     <!-- Table Body -->
@@ -54,6 +55,16 @@
                                 <!-- Task Name -->
                                 <td class="table-text">
                                     <div>{{ $task->name }}</div>
+                                </td>
+
+                                <!-- Task Created Date -->
+                                <td class="table-text">
+                                    <div>{{ $task->created_at }}</div>
+                                </td>
+                                
+                                <!-- Task Updated Date -->
+                                <td class="table-text">
+                                    <div>{{ $task->updated_at }}</div>
                                 </td>
 
                                 <!-- Delete Button -->
