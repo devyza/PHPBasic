@@ -2,33 +2,37 @@
 
 namespace App\Http\Controllers\Task;
 
-use Illuminate\Http\Request;
+use App\Contracts\Services\Task\TaskServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Task;
 use App\Rules\FirstCapitalLetter;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    private $taskServiceInterface;
+
+    public function __construct(TaskServiceInterface $taskServiceInterface)
+    {
+        $this->taskServiceInterface = $taskServiceInterface;
+    }
+
     public function getTaskList() {
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = $this->taskServiceInterface->getTaskList();
         return view('tasks', compact('tasks'));
     }
 
-    public function addTask(Request $request) {
-        
+    public function addTask(Request $request)
+    {
         $request->validate([
             'name' => ['required', 'max:255', new FirstCapitalLetter],
         ]);
-    
-        $task = new Task;
-        $task->name = $request->name;
-        $task->save();
-    
+
+        $this->taskServiceInterface->addTask($request);
         return redirect('/');
     }
 
     public function deleteTask($id) {
-        Task::findOrFail($id)->delete();
+        $this->taskServiceInterface->deleteTask($id);
         return redirect('/');
     }
 }
