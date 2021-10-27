@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Task;
 
 use App\Contracts\Services\Task\TaskServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Rules\FirstCapitalLetter;
-use Illuminate\Http\Request;
+use App\Http\Requests\AddTaskRequest;
 
 class TaskController extends Controller
 {
@@ -21,12 +20,8 @@ class TaskController extends Controller
         return view('tasks', compact('tasks'));
     }
 
-    public function addTask(Request $request)
+    public function addTask(AddTaskRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'max:255', new FirstCapitalLetter],
-        ]);
-
         $this->taskServiceInterface->addTask($request);
         return redirect('/');
     }
