@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Task\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Task\TaskController@getTaskList');
+Route::get('/', [TaskController::class, 'getTaskList']);
 
-Route::post('/task/add', 'Task\\TaskController@addTask');
+Route::post('/task/add', [TaskController::class, 'addTask']);
 
-Route::delete('/task/delete/{id}', 'Task\TaskController@deleteTask');
+Route::delete('/task/delete/{id}', [TaskController::class, 'deleteTask']);
