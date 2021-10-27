@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,10 +15,23 @@ class TaskTableSeeder extends Seeder
      */
     public function run()
     {
+        $TIME = Carbon::now()->format('Y-m-d H:i:s');
         $DATA = [
-            ['name' => 'Wash the dishes'],
-            ['name' => 'Clean the house'],
-            ['name' => 'Water the plants']
+            [
+                'name' => 'Wash the dishes',
+                'created_at' => $TIME,
+                'updated_at' => $TIME
+            ],
+            [
+                'name' => 'Clean the house',
+                'created_at' => $TIME,
+                'updated_at' => $TIME
+            ],
+            [
+                'name' => 'Water the plants',
+                'created_at' => $TIME,
+                'updated_at' => $TIME
+            ]
         ];
 
         foreach($DATA as $row) {
