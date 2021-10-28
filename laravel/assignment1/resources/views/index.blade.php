@@ -3,13 +3,18 @@
 @section('title', "Employee")
 
 @section('content')
-    <div>
+    <div class="panel">
+
         <!-- Employee List table-->
-        @if (count($employeeList) > 0)
-            <div><b>Employee List</b></div>
-            <div>
-                <table>
-                    <thead>
+        <div class="panel-heading">
+            <div><h2>Employee List</h2></div>
+        </div>
+
+        <div class="panel-body">
+            @if (count($employeeList) > 0)
+                <table class="table table-striped">
+
+                    <thead class="thead-dark">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -18,6 +23,7 @@
                         <th>Created Date</th>
                         <th>Updated Date</th>
                     </thead>
+
                     <tbody>
                         @foreach ($employeeList as $employee)
                             <tr>

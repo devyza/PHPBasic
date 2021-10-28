@@ -3,12 +3,12 @@
 @section('title', "Company")
 
 @section('content')
-    <div>
-        @if (count($companyList) > 0)
-            <div><h2>Company List</h2></div>
-            <div>
-                <table>
-                    <thead>
+    <div class="panel">
+        <div class="panel-heading"><h2>Company List</h2></div>
+        <div class="panel-body">
+            @if (count($companyList) > 0)
+                <table class="table table-striped">
+                    <thead class="thead-dark">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Country</th>
