@@ -16,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [EmployeeController::class, 'showEmployeeList']);
+Route::post('/employee/add', [EmployeeController::class, 'addEmployee']);
+Route::delete('/employee/delete/{id}', [EmployeeController::class, 'deleteEmployee']);
 
 Route::get('/company', [CompanyController::class, 'showCompanyList']);
+Route::post('/company/add', [CompanyController::class, 'addCompany']);
+Route::delete('/company/delete/{id}', [CompanyController::class, 'deleteCompany']);
