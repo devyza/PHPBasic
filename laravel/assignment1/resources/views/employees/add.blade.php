@@ -22,7 +22,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
-                    <input class="form-control" type="text" name="email" placeholder="Email" required>
+                    <input class="form-control" type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="nationality">Nationality</label>

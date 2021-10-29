@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
+use App\Http\Requests\EmployeeFormRequest;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -37,8 +38,9 @@ class EmployeeController extends Controller
      * @param Request $request values from request
      * @return View
      */
-    public function addEmployee(Request $request)
+    public function addEmployee(EmployeeFormRequest $request)
     {
+        $validated = $request->validated();
         $this->employeeService->addEmployee($request);
         return redirect('/');
     }
@@ -60,8 +62,9 @@ class EmployeeController extends Controller
      * @param string $id
      * @return void
      */
-    public function submitEmployeeEditView(Request $request, $id)
+    public function submitEmployeeEditView(EmployeeFormRequest $request, $id)
     {
+        $validated = $request->validated();
         $this->employeeService->editEmployee($request, $id);
         return redirect('/');
     }
