@@ -3,38 +3,25 @@
 @section('title', "Edit Company")
 
 @section('content')
-<div class="panel-body">
-    <form action="/employee/add" method="POST">
-        {{ csrf_field() }}
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="name">Name</label>
-                <input class="form-control" type="text" name="name" placeholder="Name">
+
+<div class="panel">
+    <div class="panel-heading panel-form"><h2>Update Company Information</h2></div>
+    <div class="panel panel-default panel-form">
+        <form action="{{route('company.edit', $company->id)}}" method="POST">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="name">Enter Company Name:</label>
+                <input class="form-control" type="text" name="name" value="{{$company->name}}" required>
             </div>
-            <div class="form-group col-md-6">
-                <label for="jobTitle">Job Title</label>
-                <input class="form-control" type="text" name="jobTitle" placeholder="Name">
+
+            <div class="form-group">
+                <label for="country">Enter Country:</label>
+                <input class="form-control" type="text" name="country" value="{{$company->country}}" required>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input class="form-control" type="text" name="email" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="nationality">Nationality</label>
-                <input class="form-control" type="text" name="nationality" placeholder="Nationality">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="company">Company</label>
-                <input class="form-control" type="text" name="company_id" placeholder="Company">
-            </div>
-        </div>
-        <div class="form-row">
-            <input class="btn btn-primary" type="submit" value="Save" name="sbtSave">
-        </div>
-    </form>
+
+            <input type="submit" class="btn btn-primary" value="Update"
+            onclick="return confirm('Are you sure you want to update?')">
+        </form>
+    </div>
 </div>
 @endsection

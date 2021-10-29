@@ -9,12 +9,12 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="name">Enter Company Name:</label>
-                <input class="form-control" type="text" name="name" id="txtName">
+                <input class="form-control" type="text" name="name" id="txtName" required>
             </div>
 
             <div class="form-group">
                 <label for="country">Enter Country:</label>
-                <input class="form-control" type="text" name="country" id="txtCountry">
+                <input class="form-control" type="text" name="country" id="txtCountry" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Add</button>
