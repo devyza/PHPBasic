@@ -33,6 +33,16 @@ class CompanyService implements CompanyServiceInterface
     {
         return $this->companyDao->getAllCompany();
     }
+
+    /**
+     * To get company by id
+     * 
+     * @return Object company 
+     */
+    public function getCompanyById($companyId)
+    {
+        return $this->companyDao->getCompanyById($companyId);
+    }
     
     /**
      * To add company into datbase
@@ -42,6 +52,16 @@ class CompanyService implements CompanyServiceInterface
     public function addCompany(Request $request)
     {
         $this->companyDao->insertCompany($request);
+    }
+
+      /**
+     * To edit employee into datbase
+     * @param Request $request values from request
+     * @return void
+     */
+    public function editCompanyById(Request $request, $companyId)
+    {
+        $this->companyDao->editCompanyById($request, $companyId);
     }
 
     /**

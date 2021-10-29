@@ -15,6 +15,13 @@ interface EmployeeServiceInterface
      * @return array employee list 
      */
     public function getEmployeeList();
+
+    /**
+     * To get employee by id
+     * @param string id $id employee id
+     * @return Employee employee object
+     */
+    public function getEmployeeById($id);
     
     /**
      * To insert employee into database
@@ -23,6 +30,13 @@ interface EmployeeServiceInterface
      */
     public function addEmployee(Request $request);
 
+    /**
+     * To edit employee into datbase
+     * @param Request $request values from request
+     * @return void
+     */
+    public function editEmployee(Request $request, $id);
+    
     /**
      * To remove employee by id
      * @param string $id employee id

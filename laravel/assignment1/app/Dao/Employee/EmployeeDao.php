@@ -23,6 +23,16 @@ class EmployeeDao implements EmployeeDaoInterface
     }
 
     /**
+     * To get employee by Id
+     * @param string $id request with employee data
+     * @return Employee employee object
+     */
+    public function getEmployeebyId($id)
+    {
+        return Employee::find($id);
+    }
+
+    /**
      * To insert employee into database
      * @param Request $request values from request
      * @return void
@@ -35,6 +45,22 @@ class EmployeeDao implements EmployeeDaoInterface
         $employee->email = $request->email;
         $employee->nationality = $request->nationality;
         $employee->company_id = (int)($request->company_id);
+        $employee->save();
+    }
+
+    /**
+     * To edit employee into datbase
+     * @param Request $request values from request
+     * @return void
+     */
+    public function editEmployee(Request $request, $id)
+    {
+        $employee = Employee::find($id);
+        $employee->name = $request->name;
+        $employee->jobTitle = $request->jobTitle;
+        $employee->email = $request->email;
+        $employee->nationality = $request->nationality;
+        $employee->company_id = $request->company_id;
         $employee->save();
     }
 

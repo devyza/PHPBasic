@@ -17,11 +17,26 @@ interface CompanyDaoInterface
     public function getAllCompany();
 
     /**
+     * To get company by id
+     * @param string $companyId company ID
+     * @return Object company 
+     */
+    public function getCompanyById($companyId);
+
+    /**
      * To insert company into datbase
      * @param Request $request request with values
      * @return void
      */
     public function insertCompany(Request $request);
+
+      /**
+     * To edit employee by ID
+     * @param Request $request values from request
+     * @param string $companyId company ID
+     * @return void
+     */
+    public function editCompanyById(Request $request, $companyId);
 
     /**
      * To delete company by id

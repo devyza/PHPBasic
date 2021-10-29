@@ -22,6 +22,16 @@ class CompanyDao implements CompanyDaoInterface
     }
 
     /**
+     * To get company by id
+     * @param string $id post id
+     * @return Object company 
+     */
+    public function getCompanyById($companyId)
+    {
+        return Company::find($companyId);
+    }
+
+    /**
      * To insert company into datbase
      * @param Request $request request with values
      * @return void
@@ -29,6 +39,19 @@ class CompanyDao implements CompanyDaoInterface
     public function insertCompany(Request $request)
     {
         $company = new Company;
+        $company->name = $request->name;
+        $company->country = $request->country;
+        $company->save();
+    }
+
+    /**
+     * To insert company into datbase
+     * @param Request $request request with values
+     * @return void
+     */
+    public function editCompanyById(Request $request, $companyId)
+    {
+        $company = Company::find($companyId);
         $company->name = $request->name;
         $company->country = $request->country;
         $company->save();

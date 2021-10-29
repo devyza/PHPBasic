@@ -4,7 +4,6 @@ namespace App\Services\Employee;
 
 use App\Contracts\Dao\Employee\EmployeeDaoInterface;
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
-use App\Models\Employee;
 use Illuminate\Http\Request;
 
 /**
@@ -36,6 +35,16 @@ class EmployeeService implements EmployeeServiceInterface
     }
 
     /**
+     * To get employee by id
+     * @param string id $id employee id
+     * @return Employee employee object
+     */
+    public function getEmployeeById($id)
+    {
+        return $this->employeeDao->getEmployeeById($id);
+    }
+
+    /**
      * To add employee into datbase
      * @param Request $request values from request
      * @return void
@@ -43,6 +52,17 @@ class EmployeeService implements EmployeeServiceInterface
     public function addEmployee(Request $request)
     {
         $this->employeeDao->insertEmployee($request);
+    }
+
+    /**
+     * To edit employee into datbase
+     * @param Request $request values from request
+     * @param string $id employee id
+     * @return void
+     */
+    public function editEmployee(Request $request, $id)
+    {
+        $this->employeeDao->editEmployee($request, $id);
     }
 
     /**
