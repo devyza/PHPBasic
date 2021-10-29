@@ -31,6 +31,7 @@
                         <th>Name</th>
                         <th>Country</th>
                         <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </thead>
                     <tbody>
                         @foreach ($companyList as $company)
@@ -39,6 +40,13 @@
                                     <td>{{$company->id}}</td>
                                     <td>{{$company->name}}</td>
                                     <td>{{$company->country}}</td>
+
+                                    <td>
+                                        <form action="/company/edit/{{$company->id}}" method="GET">
+                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                        </form>
+                                    </td>
+
                                     <td>
                                         <form action="/company/delete/{{$company->id}}" method="POST">
                                             {{ csrf_field() }}

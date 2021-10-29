@@ -33,7 +33,7 @@ class CompanyController extends Controller
     public function showCompanyList()
     {
         $companyList = $this->companyService->getCompanyList();
-        return view('company', compact('companyList'));
+        return view('companies.add', compact('companyList'));
     }
 
     /**
@@ -44,6 +44,29 @@ class CompanyController extends Controller
     public function addCompany(Request $request)
     {
         $this->companyService->addCompany($request);
+        return redirect('company');
+    }
+
+    /**
+     * To add company into datbase
+     * @param string $companyId company id
+     * @return View
+     */
+    public function showCompanyEditView($companyId)
+    {
+        $company = $this->companyService->getCompanyById($companyId);
+        return view('companies.edit', compact('company'));
+    }
+
+    /**
+     * To add company into datbase
+     * @param Request $request request with values
+     * @param string $companyId company id
+     * @return void
+     */
+    public function submitCompanyEditView(Request $request, $companyId)
+    {
+        $this->companyService->editCompanyById($request, $companyId);
         return redirect('company');
     }
 

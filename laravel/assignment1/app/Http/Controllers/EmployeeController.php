@@ -29,7 +29,7 @@ class EmployeeController extends Controller
     public function showEmployeeList()
     {
         $employeeList = $this->employeeService->getEmployeeList();
-        return view('index', compact('employeeList'));
+        return view('employees.add', compact('employeeList'));
     }
 
     /**
@@ -40,6 +40,29 @@ class EmployeeController extends Controller
     public function addEmployee(Request $request)
     {
         $this->employeeService->addEmployee($request);
+        return redirect('/');
+    }
+
+    /**
+     * To add employee into datbase
+     * @param Request $id employee id
+     * @return View
+     */
+    public function showEmployeeEditView($id)
+    {
+        $employee = $this->employeeService->getEmployeeById($id);
+        return view('employees.edit', compact('employee'));
+    }
+
+    /**
+     * To add employee into datbase
+     * @param Request $id employee id
+     * @param string $id
+     * @return void
+     */
+    public function submitEmployeeEditView(Request $request, $id)
+    {
+        $this->employeeService->editEmployee($request, $id);
         return redirect('/');
     }
 

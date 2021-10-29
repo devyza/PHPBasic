@@ -6,7 +6,6 @@
 
     <div class="panel panel-form">
         <div class="panel-heading"><h2>Enter Employee Information</h2></div>
-        
         <div class="panel-body">
             <form action="/employee/add" method="POST">
                 {{ csrf_field() }}
@@ -33,7 +32,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="company">Company</label>
-                        <input class="form-control" type="text" name="company_id" placeholder="Company">
+                        <input class="form-control" type="number" name="company_id" placeholder="Company">
                     </div>
                 </div>
                 <div class="form-row">
@@ -61,6 +60,7 @@
                         <th>Created Date</th>
                         <th>Updated Date</th>
                         <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </thead>
 
                     <tbody>
@@ -75,6 +75,11 @@
                                     <td>{{$employee->company_name}}</td>
                                     <td>{{$employee->created_at}}</td>
                                     <td>{{$employee->updated_at}}</td>
+                                    <td>
+                                        <form action="/employee/edit/{{$employee->id}}" method="GET">
+                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                        </form>
+                                    </td>
                                     <td>
                                         <form action="/employee/delete/{{$employee->id}}" method="POST">
                                             {{ csrf_field() }}
