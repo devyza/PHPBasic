@@ -79,4 +79,12 @@ class EmployeeController extends Controller
         $this->employeeService->removeEmployee($id);
         return redirect('/');
     }
+
+    /**
+     * To export exployee information in XLXS format
+     */
+    public function exportXlxs()
+    {
+        $this->employeeService->exportXlxs();
+    }
 }

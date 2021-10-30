@@ -80,4 +80,12 @@ class CompanyController extends Controller
         $this->companyService->deleteCompany($id);
         return redirect('company');
     }
+
+    /**
+     * To export company information in XLXS format
+     */
+    public function exportXlxs()
+    {
+        $this->companyService->exportXlxs();
+    }
 }

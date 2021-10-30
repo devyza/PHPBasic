@@ -44,4 +44,9 @@ interface CompanyServiceInterface
      * @return void
      */
     public function deleteCompany($id);
+
+    /**
+     * To export company information in XLXS format
+     */
+    public function exportXlxs();
 }

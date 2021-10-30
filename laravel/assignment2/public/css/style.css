@@ -5,3 +5,12 @@
 form .form-row {
   padding-inline: 10px;
 }
+
+div.btn {
+  margin-inline: 10px;
+}
+
+div.btn a {
+  color: #FFFFFF;
+  text-decoration: none;
+}

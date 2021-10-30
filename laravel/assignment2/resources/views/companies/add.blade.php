@@ -18,6 +18,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Add</button>
+            <div class="btn btn-primary"><a href="{{route('company.export')}}">Export</a></div>
         </form>
     </div>
 

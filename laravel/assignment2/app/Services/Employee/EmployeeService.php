@@ -5,6 +5,7 @@ namespace App\Services\Employee;
 use App\Contracts\Dao\Employee\EmployeeDaoInterface;
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
 use Illuminate\Http\Request;
+use SimpleXLSXGen;
 
 /**
  * Service class for Employee
@@ -73,5 +74,30 @@ class EmployeeService implements EmployeeServiceInterface
     public function removeEmployee($id)
     {
         $this->employeeDao->deleteEmployee($id);
+    }
+
+    /**
+     * To export exployee information in XLXS format
+     */
+    public function exportXlxs()
+    {
+        $employeeList = $this->employeeDao->getAllEmployee();
+        
+        if (count($employeeList) == 0) {
+            return;
+        }
+
+        $data = array();
+        array_push($data, ['id', 'name', 'email', 'nationality', 'company_name', 'created_at', 'update_at']);
+
+        // XLXS Data
+        foreach ($employeeList as $row) {
+            if ($row->deleted_at == null) {
+                array_push($data, [$row->id, $row->name, $row->email, $row->nationality,
+                $row->company_name,$row->created_at,$row->updated_at]);
+            }
+        }
+
+        SimpleXLSXGen::fromArray($data)->download();  
     }
 }

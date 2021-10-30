@@ -43,4 +43,9 @@ interface EmployeeServiceInterface
      * @return void
      */
     public function removeEmployee($id);
+
+    /**
+     * To export exployee information in XLXS format
+     */
+    public function exportXlxs();
 }

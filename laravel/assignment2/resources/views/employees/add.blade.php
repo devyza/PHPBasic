@@ -37,6 +37,7 @@
             </div>
             <div class="form-row">
                 <input class="btn btn-primary" type="submit" value="Save" name="sbtSave">
+                <div class="btn btn-primary"><a href="{{route('employee.export')}}">Export</a></div>
             </div>
         </form>
     </div>

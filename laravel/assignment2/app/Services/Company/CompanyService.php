@@ -5,6 +5,7 @@ namespace App\Services\Company;
 use App\Contracts\Dao\Company\CompanyDaoInterface;
 use App\Contracts\Services\Company\CompanyServiceInterface;
 use Illuminate\Http\Request;
+use SimpleXLSXGen;
 
 /**
  * Service Class for Company
@@ -72,5 +73,29 @@ class CompanyService implements CompanyServiceInterface
     public function deleteCompany($id)
     {
         $this->companyDao->deleteCompany($id);
+    }
+
+    /**
+     * To export company information in XLXS format
+     */
+    public function exportXlxs()
+    {
+        $companyList = $this->companyDao->getAllCompany();
+
+        if(count($companyList) == 0) {
+            return;
+        }
+
+        $data = array();
+        array_push($data, ['id', 'name', 'country', 'created_at', 'updated_at']);
+
+        foreach ($companyList as $row) {
+            if ($row->deleted_at == null) {
+                array_push($data, 
+                    [$row->id, $row->name, $row->country, $row->created_at, $row->updated_at]);
+            }
+        }
+
+        SimpleXLSXGen::fromArray($data)->download();
     }
 }
