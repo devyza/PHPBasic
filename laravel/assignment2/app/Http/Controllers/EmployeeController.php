@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
 use App\Http\Requests\EmployeeFormRequest;
+use App\Http\Requests\XlsxUploadRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -85,6 +87,28 @@ class EmployeeController extends Controller
      */
     public function exportXlxs()
     {
-        $this->employeeService->exportXlxs();
+        $this->employeeService->exportXlsx();
+    }
+
+    /**
+     * To import data from XLXS file to database
+     * @param XlsxUploadRequest $requeest request with data value
+     */
+    public function importXlsx(XlsxUploadRequest $request)
+    {
+        $ROOT_DIR = 'uploads/';
+
+        if(!is_dir($ROOT_DIR)) {
+            mkdir($ROOT_DIR);
+        }
+        
+        $validated =  $request->validated();
+        $file = $validated['importFile'];
+        $fileName = Storage::putFileAs($ROOT_DIR, $file, $file->getClientOriginalName());
+
+        $this->employeeService->importXlsx($fileName);
+        Storage::delete($fileName);
+        
+        return redirect('/');
     }
 }

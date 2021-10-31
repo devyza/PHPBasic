@@ -36,11 +36,8 @@ class CompanyDao implements CompanyDaoInterface
      * @param Request $request request with values
      * @return void
      */
-    public function insertCompany(Request $request)
+    public function insertCompany(Company $company)
     {
-        $company = new Company;
-        $company->name = $request->name;
-        $company->country = $request->country;
         $company->save();
     }
 

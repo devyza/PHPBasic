@@ -37,14 +37,8 @@ class EmployeeDao implements EmployeeDaoInterface
      * @param Request $request values from request
      * @return void
      */
-    public function insertEmployee(Request $request)
+    public function insertEmployee(Employee $employee)
     {
-        $employee = new Employee;
-        $employee->name = $request->name;
-        $employee->jobTitle = $request->jobTitle;
-        $employee->email = $request->email;
-        $employee->nationality = $request->nationality;
-        $employee->company_id = (int)($request->company_id);
         $employee->save();
     }
 

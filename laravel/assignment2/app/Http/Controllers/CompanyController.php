@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Company\CompanyServiceInterface;
+use App\Http\Requests\XlsxUploadRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Controller class for Company
@@ -84,8 +86,29 @@ class CompanyController extends Controller
     /**
      * To export company information in XLXS format
      */
-    public function exportXlxs()
+    public function exportXlsx()
     {
-        $this->companyService->exportXlxs();
+        $this->companyService->exportXlsx();
+    }
+
+    /**
+     * To import data from XlXS file into database
+     * @param XlsxUploadRequest $request request with data values
+     */
+    public function importXlsx(XlsxUploadRequest $request)
+    {
+        $ROOT_DIR = 'uploads/';
+
+        if(!is_dir($ROOT_DIR)) {
+            mkdir($ROOT_DIR);
+        }
+        
+        $validated =  $request->validated();
+        $file = $validated['importFile'];
+        $fileName = Storage::putFileAs($ROOT_DIR, $file, $file->getClientOriginalName());
+
+        $this->companyService->importXlsx($fileName);
+        Storage::delete($fileName);
+        return redirect('company');
     }
 }

@@ -4,7 +4,10 @@ namespace App\Services\Company;
 
 use App\Contracts\Dao\Company\CompanyDaoInterface;
 use App\Contracts\Services\Company\CompanyServiceInterface;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use SimpleXLSX;
 use SimpleXLSXGen;
 
 /**
@@ -52,7 +55,10 @@ class CompanyService implements CompanyServiceInterface
      */
     public function addCompany(Request $request)
     {
-        $this->companyDao->insertCompany($request);
+        $company = new Company();
+        $company->name = $request->name;
+        $company->country = $request->country; 
+        $this->companyDao->insertCompany($company);
     }
 
       /**
@@ -78,7 +84,7 @@ class CompanyService implements CompanyServiceInterface
     /**
      * To export company information in XLXS format
      */
-    public function exportXlxs()
+    public function exportXlsx()
     {
         $companyList = $this->companyDao->getAllCompany();
 
@@ -97,5 +103,30 @@ class CompanyService implements CompanyServiceInterface
         }
 
         SimpleXLSXGen::fromArray($data)->download();
+    }
+
+    /**
+     * To import data from XlSX file into database
+     * @param string $filename the name of file
+     * @return void
+     */
+    public function importXlsx($fileName)
+    {
+        $file = Storage::path($fileName);
+
+        if ($xlsx = SimpleXLSX::parse($file)) {
+
+            $isHeader = true;
+            foreach( $xlsx->rows() as $row ) {      
+                if ($isHeader == false ) {
+                    $company = new Company();
+                    $company->name = $row[0];
+                    $company->country = $row[1];
+                    $this->companyDao->insertCompany($company);
+                } else {
+                    $isHeader = false;
+                }
+            }
+        }
     }
 }

@@ -37,8 +37,20 @@
             </div>
             <div class="form-row">
                 <input class="btn btn-primary" type="submit" value="Save" name="sbtSave">
-                <div class="btn btn-primary"><a href="{{route('employee.export')}}">Export</a></div>
             </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel-file panel panel-default">
+    <div class="panel-heading"><h2>Import/Export</h2></div>
+    <div class="panel-body row">
+        <form action="{{route('employee.import')}}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <label for="importFile" hidden>Import File</label>
+            <input class="btn-primary" type="file" name="importFile" required>
+            <input class="btn btn-primary" type="submit" name="submit" value="Import">
+            <div class="btn btn-primary"><a href="{{route('employee.export')}}">Export</a></div>
         </form>
     </div>
 </div>

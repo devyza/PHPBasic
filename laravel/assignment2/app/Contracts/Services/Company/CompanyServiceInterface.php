@@ -46,7 +46,14 @@ interface CompanyServiceInterface
     public function deleteCompany($id);
 
     /**
-     * To export company information in XLXS format
+     * To export company information in XLSX format
      */
-    public function exportXlxs();
+    public function exportXlsx();
+
+    /**
+     * To import data from XlSX file into database
+     * @param string $filename name of the file
+     * @return void
+     */
+    public function importXlsx($filename);
 }

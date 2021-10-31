@@ -45,7 +45,14 @@ interface EmployeeServiceInterface
     public function removeEmployee($id);
 
     /**
-     * To export exployee information in XLXS format
+     * To export exployee information in XLSX format
      */
-    public function exportXlxs();
+    public function exportXlsx();
+
+    /**
+     * To import exployee information from XLSX file
+     * @param string $filename the name of file
+     * @return void
+     */
+    public function importXlsx($fileName);
 }

@@ -4,7 +4,10 @@ namespace App\Services\Employee;
 
 use App\Contracts\Dao\Employee\EmployeeDaoInterface;
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use SimpleXLSX;
 use SimpleXLSXGen;
 
 /**
@@ -52,7 +55,14 @@ class EmployeeService implements EmployeeServiceInterface
      */
     public function addEmployee(Request $request)
     {
-        $this->employeeDao->insertEmployee($request);
+        $employee = new Employee;
+        $employee->name = $request->name;
+        $employee->jobTitle = $request->jobTitle;
+        $employee->email = $request->email;
+        $employee->nationality = $request->nationality;
+        $employee->company_id = $request->company_id;
+
+        $this->employeeDao->insertEmployee($employee);
     }
 
     /**
@@ -79,7 +89,7 @@ class EmployeeService implements EmployeeServiceInterface
     /**
      * To export exployee information in XLXS format
      */
-    public function exportXlxs()
+    public function exportXlsx()
     {
         $employeeList = $this->employeeDao->getAllEmployee();
         
@@ -99,5 +109,28 @@ class EmployeeService implements EmployeeServiceInterface
         }
 
         SimpleXLSXGen::fromArray($data)->download();  
+    }
+
+    public function importXlsx($fileName)
+    {
+        $file = Storage::path($fileName);
+
+        if ($xlsx = SimpleXLSX::parse($file)) {
+
+            $isHeader = true;
+            foreach( $xlsx->rows() as $row ) {      
+                if ($isHeader == false ) {
+                    $employee = new Employee;
+                    $employee->name = $row[0];
+                    $employee->jobTitle = $row[1];
+                    $employee->email = $row[2];
+                    $employee->nationality = $row[3];
+                    $employee->company_id = $row[4];
+                    $this->employeeDao->insertEmployee($employee);
+                } else {
+                    $isHeader = false;
+                }
+            }
+        }
     }
 }
