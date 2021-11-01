@@ -5,6 +5,7 @@ namespace App\Dao\Company;
 use App\Contracts\Dao\Company\CompanyDaoInterface;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Data Access Object for company
@@ -18,7 +19,10 @@ class CompanyDao implements CompanyDaoInterface
      */
     public function getAllCompany()
     {
-        return Company::orderBy('name')->get();
+        $companies = DB::select(
+            DB::raw("SELECT id, name, country, deleted_at FROM companies ORDER BY name;")
+        );
+        return $companies;
     }
 
     /**
@@ -28,7 +32,11 @@ class CompanyDao implements CompanyDaoInterface
      */
     public function getCompanyById($companyId)
     {
-        return Company::find($companyId);
+        // return Company::find($companyId);
+        $company = DB::select(
+            DB::raw("SELECT id, name, country FROM companies WHERE id=" . $companyId)
+        );
+        return $company[0];
     }
 
     /**
@@ -48,7 +56,7 @@ class CompanyDao implements CompanyDaoInterface
      */
     public function editCompanyById(Request $request, $companyId)
     {
-        $company = Company::find($companyId);
+        $company = $this->getCompanyById($companyId);
         $company->name = $request->name;
         $company->country = $request->country;
         $company->save();

@@ -16,10 +16,11 @@ class EmployeeDao implements EmployeeDaoInterface
      */
     public function getAllEmployee()
     {
-        return DB::table('employees')
-            ->join('companies', 'employees.company_id', '=', 'companies.id')
-            ->select('employees.*', 'companies.name as company_name')
-            ->get();
+        return DB::select(
+            DB::raw("SELECT E.id, E.name, E.jobTitle, E.email, E.nationality, E.created_at, 
+            E.updated_at, E.deleted_at, C.name as company_name from employees as E
+            LEFT OUTER JOIN companies AS C ON E.company_id = C.id;")
+        );
     }
 
     /**
@@ -29,7 +30,8 @@ class EmployeeDao implements EmployeeDaoInterface
      */
     public function getEmployeebyId($id)
     {
-        return Employee::find($id);
+        $employee =  DB::select(DB::raw("SELECT * from employees WHERE id=" . $id));
+        return $employee[0];
     }
 
     /**
@@ -49,7 +51,7 @@ class EmployeeDao implements EmployeeDaoInterface
      */
     public function editEmployee(Request $request, $id)
     {
-        $employee = Employee::find($id);
+        $employee = $this->getEmployeebyId($id);
         $employee->name = $request->name;
         $employee->jobTitle = $request->jobTitle;
         $employee->email = $request->email;
