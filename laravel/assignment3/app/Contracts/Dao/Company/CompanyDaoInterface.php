@@ -45,4 +45,11 @@ interface CompanyDaoInterface
      * @return void
      */
     public function deleteCompany($id);
+
+    /**
+     * To search company
+     * @param Company $company company object to search
+     * @return array list of matched company
+     */
+    public function searchCompany(Company $company, $startDate, $endDate);
 }

@@ -33,6 +33,36 @@
         </div>
     </div>
 
+    <div class="panel panel-default panel-form">
+        <div class="panel-heading">
+            <h2>Search</h2>
+        </div>
+        <div class="panel-body">
+            <form action="{{route('company.search')}}" method="post">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="name">Enter Company Name:</label>
+                    <input class="form-control" type="text" name="name" id="txtName">
+                </div>
+                <div class="form-group">
+                    <label for="country">Enter Country:</label>
+                    <input class="form-control" type="text" name="country" id="txtCountry">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="country">Start Date</label>
+                        <input class="form-control" type="date" name="startDate" id="txtStartDate">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="country">End Date</label>
+                        <input class="form-control" type="date" name="endDate" id="txtEndDate">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
     <div class="panel panel-default">
         <div class="panel-heading"><h2>Company List</h2></div>
         <div class="panel-body">

@@ -44,4 +44,12 @@ interface EmployeeDaoInterface
      * @return void
      */
     public function deleteEmployee($id);
+
+    /**
+     * To search employee
+     * @param Employee employee object to search
+     * @param string startDate start date
+     * @param string endDate end date
+     */
+    public function searchEmployee(Employee $employee, $startDate, $endDate);
 }

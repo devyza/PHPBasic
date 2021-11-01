@@ -111,4 +111,25 @@ class EmployeeController extends Controller
         
         return redirect('/');
     }
+
+    /**
+     * To searh the employee
+     * @param Request $request in request with value
+     * @return View view to show employee list
+     */
+    public function searchEmployee(Request $request)
+    {
+        $validated = [
+            'name' => $request->name,
+            'jobTitle' => $request->jobTitle,
+            'email' => $request->email,
+            'nationality' => $request->nationality,
+            'company_id' => $request->company_id,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate
+        ];
+
+        $employeeList = $this->employeeService->searchEmployee($validated);
+        return view('employees.add', compact('employeeList'));
+    }
 }

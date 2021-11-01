@@ -129,4 +129,20 @@ class CompanyService implements CompanyServiceInterface
             }
         }
     }
+
+    /**
+     * To search company
+     * @param array $validated validated results to search company
+     * @return array list of matched company
+     */
+    public function searchCompany($validated)
+    {
+        $company = new Company;
+        $company->name = $validated['name'];
+        $company->country = $validated['country'];
+        $startDate = $validated['startDate']; 
+        $endDate = $validated['endDate']; 
+        
+        return $this->companyDao->searchCompany($company, $startDate, $endDate);
+    }
 }

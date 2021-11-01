@@ -133,4 +133,23 @@ class EmployeeService implements EmployeeServiceInterface
             }
         }
     }
+
+    /**
+     * To search employee
+     * @param Employee employee object to search
+     * @param array $validated data values from request
+     * @return array list of matched employee
+     */
+    public function searchEmployee($validated)
+    {
+        $employee = new Employee;
+        $employee->name = $validated['name'];
+        $employee->jobTitle = $validated['jobTitle'];
+        $employee->email = $validated['email'];
+        $employee->nationality = $validated['nationality'];
+        $employee->company_id = $validated['company_id'];
+
+        return $this->employeeDao
+            ->searchEmployee($employee, $validated['startDate'], $validated['endDate']);
+    }
 }

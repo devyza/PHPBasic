@@ -69,4 +69,36 @@ class EmployeeDao implements EmployeeDaoInterface
     {
         Employee::findOrFail($id)->delete();
     }
+
+    /**
+     * To search employee
+     * @param Employee employee object to search
+     * @param string startDate start date
+     * @param string endDate end date
+     */
+    public function searchEmployee(Employee $employee, $startDate, $endDate)
+    {   
+        $currentDate = date('Y-m-d');
+
+        if (!$startDate) {
+            $startDate = $currentDate;
+        }
+        if (!$endDate)  {
+            $endDate = date('Y-m-d', strtotime($currentDate . ' +1 day'));
+        }
+
+        $employeeList = DB::select(DB::raw(
+            DB::raw("SELECT E.*, C.name as company_name from employees as E 
+                LEFT OUTER JOIN companies AS C ON E.company_id = C.id WHERE 
+                E.name LIKE '%$employee->name%' AND
+                E.jobTitle LIKE '%$employee->jobTitle%' AND 
+                E.email LIKE '%$employee->email%' AND
+                E.nationality LIKE '%$employee->nationality%' AND 
+                E.company_id = $employee->company_id AND
+                E.created_at BETWEEN '$startDate' AND '$endDate';
+            ")
+        ));
+        
+        return $employeeList;
+    }
 }

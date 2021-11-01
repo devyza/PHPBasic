@@ -56,4 +56,11 @@ interface CompanyServiceInterface
      * @return void
      */
     public function importXlsx($filename);
+
+    /**
+     * To search company
+     * @param array $validated validated results to search company
+     * @return array list of matched company
+     */
+    public function searchCompany($validated);
 }

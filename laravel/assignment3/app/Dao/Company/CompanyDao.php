@@ -32,7 +32,6 @@ class CompanyDao implements CompanyDaoInterface
      */
     public function getCompanyById($companyId)
     {
-        // return Company::find($companyId);
         $company = DB::select(
             DB::raw("SELECT id, name, country FROM companies WHERE id=" . $companyId)
         );
@@ -70,5 +69,34 @@ class CompanyDao implements CompanyDaoInterface
     public function deleteCompany($id)
     {
         Company::findOrFail($id)->delete();
+    }
+
+    /**
+     * To search company
+     * @param Company $company company object to search
+     * @param string $startDate start date
+     * @param string $endDate end date
+     * @return array list of matched company
+     */
+    public function searchCompany(Company $company, $startDate, $endDate)
+    {
+
+        $currentDate = date('Y-m-d');
+
+        if (!$startDate) {
+            $startDate = $currentDate;
+        }
+        if (!$endDate)  {
+            $endDate = date('Y-m-d', strtotime($currentDate . ' +1 day'));
+        }
+
+        $company = DB::select(DB::raw(
+            $sql = "SELECT id, name, country, deleted_at FROM companies WHERE 
+            name LIKE '%$company->name%' AND
+            country LIKE '%$company->country%' AND 
+            created_at BETWEEN '$startDate' AND '$endDate'"
+        ));
+        
+        return $company;
     }
 }

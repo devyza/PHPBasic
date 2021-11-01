@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Company\CompanyServiceInterface;
+use App\Http\Requests\CompanyFormRequest;
 use App\Http\Requests\XlsxUploadRequest;
+use Illuminate\Auth\RequestGuard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Psy\CodeCleaner\RequirePass;
 
 /**
  * Controller class for Company
@@ -110,5 +113,23 @@ class CompanyController extends Controller
         $this->companyService->importXlsx($fileName);
         Storage::delete($fileName);
         return redirect('company');
+    }
+
+    /**
+     * To import data from XlXS file into database
+     * @param Request $request request with data values
+     * @return View view to show company list
+     */
+    public function searchCompany(Request $request)
+    {
+        $array= [ 
+            'name' => $request->name,
+            'country' => $request->country,
+            'startDate' => $request->startDate,
+            'endDate' => $request->endDate
+        ];
+        
+        $companyList = $this->companyService->searchCompany($array);
+        return view('companies.add', compact('companyList'));
     }
 }

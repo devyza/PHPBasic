@@ -55,4 +55,12 @@ interface EmployeeServiceInterface
      * @return void
      */
     public function importXlsx($fileName);
+
+    /**
+     * To search employee
+     * @param Employee employee object to search
+     * @param array $validated data values from request
+     * @return array list of matched employee
+     */
+    public function searchEmployee($validated);
 }

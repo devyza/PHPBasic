@@ -55,6 +55,54 @@
     </div>
 </div>
 
+<div class="panel panel-form">
+    <div class="panel-heading"><h2>Search</h2></div>
+    <div class="panel-body">
+        <form action="{{route('employee.search')}}" method="POST">
+            {{ csrf_field() }}
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" name="name" placeholder="Name">
+                </div>
+                <div class="form-group col-6">
+                    <label for="jobTitle">Job Title</label>
+                    <input class="form-control" type="text" name="jobTitle" placeholder="Job Title">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" placeholder="Email">
+                </div>
+                <div class="form-group col-6">
+                    <label for="nationality">Nationality</label>
+                    <input class="form-control" type="text" name="nationality" placeholder="Nationality">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="company">Company</label>
+                    <input class="form-control" type="number" name="company_id" placeholder="Company">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="country">Start Date</label>
+                    <input class="form-control" type="date" name="startDate" id="txtStartDate">
+                </div>
+                <div class="form-group col-6">
+                    <label for="country">End Date</label>
+                    <input class="form-control" type="date" name="endDate" id="txtEndDate">
+                </div>
+            </div>
+            <div class="form-row">
+                <input class="btn btn-primary" type="submit" value="Search" name="sbtSearch">
+            </div>
+        </form>
+    </div>
+</div>
+
 <!-- Employee List table-->
 <div class="panel">
     <div class="panel-heading"><h2>Employee List</h2></div>

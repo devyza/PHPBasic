@@ -28,6 +28,7 @@ Route::post('/employee/edit/{id}', [EmployeeController::class, 'submitEmployeeEd
 Route::delete('/employee/delete/{id}', [EmployeeController::class, 'deleteEmployee'])->name('employee.delete');
 Route::get('/employee/export', [EmployeeController::class, 'exportXlsx'])->name('employee.export');
 Route::post('/employee/import', [EmployeeController::class, 'importXlsx'])->name('employee.import');
+Route::post('/employee/search', [EmployeeController::class, 'searchEmployee'])->name('employee.search');
 
 /* Routes for Company */
 Route::get('/company', [CompanyController::class, 'showCompanyList'])->name('company');
@@ -37,3 +38,4 @@ Route::post('/company/edit/{id}', [CompanyController::class, 'submitCompanyEditV
 Route::delete('/company/delete/{id}', [CompanyController::class, 'deleteCompany'])->name('company.delete');
 Route::get('/company/export', [CompanyController::class, 'exportXlsx'])->name('company.export');
 Route::post('/company/import', [CompanyController::class, 'importXlsx'])->name('company.import');
+Route::post('/company/search', [CompanyController::class, 'searchCompany'])->name('company.search');
