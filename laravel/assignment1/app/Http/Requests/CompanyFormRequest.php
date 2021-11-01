@@ -23,11 +23,19 @@ class CompanyFormRequest extends FormRequest
      */
     public function rules()
     {
-        $nameRule = ['required', 'string', 'max:255'];
-
         return [
-            'name' => $nameRule,
-            'company' => $nameRule
+            'name' => 'required|max:255',
+            'country' => 'required|max:255'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => "Name is required",
+            'name.max' => "A name must be with 255 characters ",
+            'country.required' => "Country is Required",
+            'country.max' => "A country data must be with 255 characters"
         ];
     }
 }

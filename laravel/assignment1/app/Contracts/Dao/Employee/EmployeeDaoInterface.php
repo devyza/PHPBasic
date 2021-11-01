@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Dao\Employee;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 /**
@@ -28,14 +29,14 @@ interface EmployeeDaoInterface
      * @param Request $request values from request
      * @return void
      */
-    public function insertEmployee(Request $request);
+    public function insertEmployee(Employee $employee);
 
     /**
      * To edit employee into datbase
      * @param Request $request values from request
      * @return void
      */
-    public function editEmployee(Request $request, $id);
+    public function editEmployee(Employee $employee, $id);
 
     /**
      * To delete employee by id

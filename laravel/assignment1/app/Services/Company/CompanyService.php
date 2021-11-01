@@ -4,7 +4,7 @@ namespace App\Services\Company;
 
 use App\Contracts\Dao\Company\CompanyDaoInterface;
 use App\Contracts\Services\Company\CompanyServiceInterface;
-use Illuminate\Http\Request;
+use App\Models\Company;
 
 /**
  * Service Class for Company
@@ -49,19 +49,25 @@ class CompanyService implements CompanyServiceInterface
      * @param Request $request values from request
      * @return void
      */
-    public function addCompany(Request $request)
+    public function addCompany($validated)
     {
-        $this->companyDao->insertCompany($request);
+        $company = new Company;
+        $company->name = $validated['name'];
+        $company->country = $validated['country'];
+        $this->companyDao->insertCompany($company);
     }
 
       /**
      * To edit employee into datbase
-     * @param Request $request values from request
+     * @param array $validated validated values from request
      * @return void
      */
-    public function editCompanyById(Request $request, $companyId)
+    public function editCompanyById($validated, $companyId)
     {
-        $this->companyDao->editCompanyById($request, $companyId);
+        $company = new Company;
+        $company->name = $validated['name'];
+        $company->country = $validated['country'];
+        $this->companyDao->editCompanyById($company, $companyId);
     }
 
     /**

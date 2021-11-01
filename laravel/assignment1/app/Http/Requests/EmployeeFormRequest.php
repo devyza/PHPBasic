@@ -28,7 +28,7 @@ class EmployeeFormRequest extends FormRequest
         return [
             'name' => $nameRule,
             'jobTitle' => $nameRule,
-            'email' => ['required', 'unique:employees'],
+            'email' => 'email|required|max:255|unique:employees,email,' . $this->id,
             'nationality' => $nameRule,
             'company_id' => ['exists:companies,id', 'numeric']
         ];

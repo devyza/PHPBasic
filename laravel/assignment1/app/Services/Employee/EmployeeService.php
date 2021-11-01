@@ -4,6 +4,7 @@ namespace App\Services\Employee;
 
 use App\Contracts\Dao\Employee\EmployeeDaoInterface;
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 /**
@@ -49,20 +50,32 @@ class EmployeeService implements EmployeeServiceInterface
      * @param Request $request values from request
      * @return void
      */
-    public function addEmployee(Request $request)
+    public function addEmployee($validated)
     {
-        $this->employeeDao->insertEmployee($request);
+        $employee = new Employee;
+        $employee->name = $validated['name'];
+        $employee->jobTitle = $validated['jobTitle'];
+        $employee->email = $validated['email'];
+        $employee->nationality = $validated['nationality'];
+        $employee->company_id = $validated['company_id'];
+        $this->employeeDao->insertEmployee($employee);
     }
 
     /**
      * To edit employee into datbase
-     * @param Request $request values from request
+     * @param array $array validated data in array from request
      * @param string $id employee id
      * @return void
      */
-    public function editEmployee(Request $request, $id)
+    public function editEmployee($validated, $id)
     {
-        $this->employeeDao->editEmployee($request, $id);
+        $employee = new Employee;
+        $employee->name = $validated['name'];
+        $employee->jobTitle = $validated['jobTitle'];
+        $employee->email = $validated['email'];
+        $employee->nationality = $validated['nationality'];
+        $employee->company_id = $validated['company_id'];
+        $this->employeeDao->editEmployee($employee, $id);
     }
 
     /**

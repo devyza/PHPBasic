@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Company\CompanyServiceInterface;
+use App\Http\Requests\CompanyFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Controller class for Company
@@ -41,9 +43,10 @@ class CompanyController extends Controller
      * @param Request $request values from request
      * @return void
      */
-    public function addCompany(Request $request)
+    public function addCompany(CompanyFormRequest $request)
     {
-        $this->companyService->addCompany($request);
+        $validated = $request->validated();
+        $this->companyService->addCompany($validated);
         return redirect('company');
     }
 
@@ -64,9 +67,10 @@ class CompanyController extends Controller
      * @param string $companyId company id
      * @return void
      */
-    public function submitCompanyEditView(Request $request, $companyId)
+    public function submitCompanyEditView(CompanyFormRequest $request, $companyId)
     {
-        $this->companyService->editCompanyById($request, $companyId);
+        $validated = $request->validated();
+        $this->companyService->editCompanyById($validated, $companyId);
         return redirect('company');
     }
 

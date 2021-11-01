@@ -37,14 +37,8 @@ class EmployeeDao implements EmployeeDaoInterface
      * @param Request $request values from request
      * @return void
      */
-    public function insertEmployee(Request $request)
+    public function insertEmployee(Employee $employee)
     {
-        $employee = new Employee;
-        $employee->name = $request->name;
-        $employee->jobTitle = $request->jobTitle;
-        $employee->email = $request->email;
-        $employee->nationality = $request->nationality;
-        $employee->company_id = (int)($request->company_id);
         $employee->save();
     }
 
@@ -53,14 +47,14 @@ class EmployeeDao implements EmployeeDaoInterface
      * @param Request $request values from request
      * @return void
      */
-    public function editEmployee(Request $request, $id)
+    public function editEmployee(Employee $newEmployee, $id)
     {
         $employee = Employee::find($id);
-        $employee->name = $request->name;
-        $employee->jobTitle = $request->jobTitle;
-        $employee->email = $request->email;
-        $employee->nationality = $request->nationality;
-        $employee->company_id = $request->company_id;
+        $employee->name = $newEmployee->name;
+        $employee->jobTitle = $newEmployee->jobTitle;
+        $employee->email = $newEmployee->email;
+        $employee->nationality = $newEmployee->nationality;
+        $employee->company_id = $newEmployee->company_id;
         $employee->save();
     }
 

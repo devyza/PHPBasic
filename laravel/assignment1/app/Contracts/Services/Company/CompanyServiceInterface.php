@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Services\Company;
 
-use Illuminate\Http\Request;
-
 /**
  * Interface for company service
  */
@@ -25,18 +23,18 @@ interface CompanyServiceInterface
 
     /**
      * To add company into datbase
-     * @param Request $request values from request
+     * @param array $validated validated values from request
      * @return void
      */
-    public function addCompany(Request $request);
+    public function addCompany($validated);
 
     /**
      * To edit employee by id
-     * @param Request $request values from request
-     * @param string $companyId  company id
+     * @param array $validated validated data from request
+     * @param string $companyId company id
      * @return void
      */
-    public function editCompanyById(Request $request, $companyId);
+    public function editCompanyById($validated, $companyId);
 
     /**
      * To delete company by id

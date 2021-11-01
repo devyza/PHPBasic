@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Dao\Company;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 /**
@@ -25,10 +26,10 @@ interface CompanyDaoInterface
 
     /**
      * To insert company into datbase
-     * @param Request $request request with values
+     * @param Company $company company object
      * @return void
      */
-    public function insertCompany(Request $request);
+    public function insertCompany(Company $company);
 
       /**
      * To edit employee by ID
@@ -36,7 +37,7 @@ interface CompanyDaoInterface
      * @param string $companyId company ID
      * @return void
      */
-    public function editCompanyById(Request $request, $companyId);
+    public function editCompanyById(Company $newCompany, $companyId);
 
     /**
      * To delete company by id

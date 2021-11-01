@@ -36,11 +36,8 @@ class CompanyDao implements CompanyDaoInterface
      * @param Request $request request with values
      * @return void
      */
-    public function insertCompany(Request $request)
+    public function insertCompany(Company $company)
     {
-        $company = new Company;
-        $company->name = $request->name;
-        $company->country = $request->country;
         $company->save();
     }
 
@@ -49,11 +46,11 @@ class CompanyDao implements CompanyDaoInterface
      * @param Request $request request with values
      * @return void
      */
-    public function editCompanyById(Request $request, $companyId)
+    public function editCompanyById(Company $newCompany, $companyId)
     {
         $company = Company::find($companyId);
-        $company->name = $request->name;
-        $company->country = $request->country;
+        $company->name = $newCompany->name;
+        $company->country = $newCompany->country;
         $company->save();
     }
 

@@ -35,13 +35,13 @@ class EmployeeController extends Controller
 
     /**
      * To add employee into datbase
-     * @param Request $request values from request
-     * @return View
+     * @param EmployeeFormRequest $request values from request
+     * @return void
      */
     public function addEmployee(EmployeeFormRequest $request)
     {
         $validated = $request->validated();
-        $this->employeeService->addEmployee($request);
+        $this->employeeService->addEmployee($validated);
         return redirect('/');
     }
 
@@ -58,14 +58,14 @@ class EmployeeController extends Controller
 
     /**
      * To add employee into datbase
-     * @param Request $id employee id
+     * @param EmployeeFormRequest $id employee id
      * @param string $id
      * @return void
      */
     public function submitEmployeeEditView(EmployeeFormRequest $request, $id)
     {
         $validated = $request->validated();
-        $this->employeeService->editEmployee($request, $id);
+        $this->employeeService->editEmployee($validated, $id);
         return redirect('/');
     }
 

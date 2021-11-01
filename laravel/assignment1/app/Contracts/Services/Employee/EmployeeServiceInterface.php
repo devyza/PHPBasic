@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Services\Employee;
 
-use Illuminate\Http\Request;
-
 /**
  * Interface for Employee Service
  */
@@ -25,17 +23,18 @@ interface EmployeeServiceInterface
     
     /**
      * To insert employee into database
-     * @param Request $request values from request
+     * @param array $validated validated data in array from request
      * @return void
      */
-    public function addEmployee(Request $request);
+    public function addEmployee($validated);
 
     /**
      * To edit employee into datbase
-     * @param Request $request values from request
+     * @param array $array validated data in array from request
+     * @param string $id employee id
      * @return void
      */
-    public function editEmployee(Request $request, $id);
+    public function editEmployee($validated, $id);
     
     /**
      * To remove employee by id
