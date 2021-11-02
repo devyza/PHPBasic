@@ -26,6 +26,7 @@ class EmployeeFormRequest extends FormRequest
         $nameRule = ['required', 'max:255'];
 
         return [
+            'id' => ['numeric', 'nullable'],
             'name' => $nameRule,
             'jobTitle' => $nameRule,
             'email' => ['required', 'unique:employees'],

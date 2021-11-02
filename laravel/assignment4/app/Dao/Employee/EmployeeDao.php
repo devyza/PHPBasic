@@ -51,7 +51,7 @@ class EmployeeDao implements EmployeeDaoInterface
      */
     public function editEmployee(Request $request, $id)
     {
-        $employee = $this->getEmployeebyId($id);
+        $employee = Employee::find($id);
         $employee->name = $request->name;
         $employee->jobTitle = $request->jobTitle;
         $employee->email = $request->email;
@@ -94,7 +94,6 @@ class EmployeeDao implements EmployeeDaoInterface
                 E.jobTitle LIKE '%$employee->jobTitle%' AND 
                 E.email LIKE '%$employee->email%' AND
                 E.nationality LIKE '%$employee->nationality%' AND 
-                E.company_id = $employee->company_id AND
                 E.created_at BETWEEN '$startDate' AND '$endDate';
             ")
         ));

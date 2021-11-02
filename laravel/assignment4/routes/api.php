@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployeeAPIController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('employee/list', [EmployeeAPIController::class, 'getEmployeeList'])->name('employee.get');
+Route::post('employee/list/add/', [EmployeeAPIController::class, 'addEmployee']);
+Route::post('employee/list/edit/', [EmployeeAPIController::class, 'editEmployee']);
+Route::get('/employee/list/delete/{id}', [EmployeeAPIController::class, 'deleteEmployee']);
+
+Route::get('api-view/employee', function(){
+    return view('employees.api.list');
+})->name('employee.list');
