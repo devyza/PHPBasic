@@ -26,6 +26,8 @@ Route::post('/employee/add', [EmployeeController::class, 'addEmployee'])->name('
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'showEmployeeEditView'])->name('employee.edit');
 Route::post('/employee/edit/{id}', [EmployeeController::class, 'submitEmployeeEditView'])->name('employee.edit.submit');
 Route::delete('/employee/delete/{id}', [EmployeeController::class, 'deleteEmployee'])->name('employee.delete');
+Route::get('/employee/mail/{id}', [EmployeeController::class, 'showEmployeeMailView'])->name('employee.mail');
+Route::post('/employee/mail/{id}/submit', [EmployeeController::class, 'submitMailSendView'])->name('employee.mail.submit');
 
 /* Routes for Company */
 Route::get('/company', [CompanyController::class, 'showCompanyList'])->name('company');

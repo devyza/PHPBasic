@@ -66,8 +66,8 @@
                 <th>Email</th>
                 <th>Nationality</th>
                 <th>Company</th>
-                <th>Created Date</th>
-                <th>Updated Date</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </thead>
@@ -83,8 +83,7 @@
                                 <td>{{$employee->email}}</td>
                                 <td>{{$employee->nationality}}</td>
                                 <td>{{$employee->company_name}}</td>
-                                <td>{{$employee->created_at}}</td>
-                                <td>{{$employee->updated_at}}</td>
+                                <td><a class="btn btn-primary" href="/employee/mail/{{$employee->id}}">Mail</a></td>
                                 <td>
                                     <form action="/employee/edit/{{$employee->id}}" method="GET">
                                         <button type="submit" class="btn btn-primary">Edit</button>

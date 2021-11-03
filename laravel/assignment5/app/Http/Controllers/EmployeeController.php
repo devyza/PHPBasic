@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
+use App\Contracts\Services\Mail\MailServiceInterface;
 use App\Http\Requests\EmployeeFormRequest;
+use App\Http\Requests\MailFormRequest;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -12,14 +14,17 @@ class EmployeeController extends Controller
      * Attribute for employee service
      */
     protected $employeeService;
+    protected $mailService;
 
     /**
      * Class Constructor
      * @param EmployeeServiceInterface
      */
-    public function __construct(EmployeeServiceInterface $employeeServiceInterface)
+    public function __construct(EmployeeServiceInterface $employeeServiceInterface, 
+        MailServiceInterface $mailServiceInterface)
     {
         $this->employeeService = $employeeServiceInterface;
+        $this->mailService = $mailServiceInterface;
     }
 
     /**
@@ -77,6 +82,29 @@ class EmployeeController extends Controller
     public function deleteEmployee($id)
     {
         $this->employeeService->removeEmployee($id);
+        return redirect('/');
+    }
+
+    /**
+     * To show employee into datbase
+     * @param string $id employee id
+     * @return View
+     */
+    public function showEmployeeMailView($id) {
+        $employee = $this->employeeService->getEmployeeById($id);
+        return view('employees.mail', compact('employee'));
+    }
+
+    /**
+     * To delete employee into datbase
+     * @param string $id employee id
+     * @return View
+     */
+    public function submitMailSendView(MailFormRequest $request) {
+
+        $validated = $request->validated();
+
+        $this->mailService->sendMail($validated);
         return redirect('/');
     }
 }
