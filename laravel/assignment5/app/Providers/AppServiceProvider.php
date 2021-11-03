@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         // Service Registration
         $this->app->bind('App\Contracts\Services\Company\CompanyServiceInterface', 'App\Services\Company\CompanyService');
         $this->app->bind('App\Contracts\Services\Employee\EmployeeServiceInterface', 'App\Services\Employee\EmployeeService');
+        $this->app->bind('App\Contracts\Services\Mail\MailServiceInterface', 'App\Services\Mail\MailService');
     }
 
     /**
