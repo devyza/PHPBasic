@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Services\Employee\EmployeeServiceInterface;
 use App\Http\Requests\EmployeeFormRequest;
+use Illuminate\Http\Response;
 
 class EmployeeAPIController extends Controller
 {
@@ -40,7 +41,7 @@ class EmployeeAPIController extends Controller
     {
         $validated = $request->validated();
         $this->employeeService->addEmployee($request);
-        return response("Employee is Added Successfully", 200);
+        return response()->json(['msg' => "Employee has Successfully Saved"]);
     }
 
     /**
@@ -53,7 +54,7 @@ class EmployeeAPIController extends Controller
     {
         $validated = $request->validated();
         $this->employeeService->editEmployee($request, $validated['id']);
-        return response("Employee is Updated Successfully", 200);
+        return response()->json(['msg' => "Employee has Successfully Updated"]);
     }
 
     /**
@@ -63,7 +64,7 @@ class EmployeeAPIController extends Controller
      */
     public function deleteEmployee($id)
     {
-        $msg = $this->employeeService->removeEmployee($id);
-        return response("Employee is Deleted Successfully", 200);
+        $this->employeeService->removeEmployee($id);
+        return response()->json(['msg' => "Employee has Successfully Deleted"]);
     }
 }
