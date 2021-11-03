@@ -1,0 +1,20 @@
+.panel-form {
+  padding: 30px;
+}
+
+form .form-row {
+  padding-inline: 10px;
+}
+
+div.btn {
+  margin-inline: 10px;
+}
+
+div.btn a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.panel-file .panel-body {
+  padding-inline: 30px;
+}
